@@ -1,0 +1,23 @@
+{
+  "name": "firstapinode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "MyApiNode"
+  },
+  "author": "Serge Guea",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.2",
+    "save": "^2.9.0",
+    "save-dev": "^0.0.1-security"
+  }
+}
