@@ -1,13 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const feedRoutes = require ('./routes/feed');
 
-const feedRoutes = require('./routes/feed');
+//const db = require('./utils/database');
 
 const app = express();
-
 app.use(bodyParser.json()); //application/json
 
-//CORS
 app.use((req,res,next) => {
     res.setHeader('Access-Control-Allow-Origin','*');
     res.setHeader('Access-Control-Allow-Methods','GET,POST,PUT,PATCH,DELETE');
@@ -15,6 +14,9 @@ app.use((req,res,next) => {
     next();
 });
 
+
+
+app.use(express.static('public'));
 app.use('/feed',feedRoutes);
 
 app.listen(8080);
