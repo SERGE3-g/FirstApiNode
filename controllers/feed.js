@@ -2,9 +2,9 @@ const { validationResult } = require('express-validator/check');
 const db = require('../utils/database');
 
 exports.getPosts = (req,res,next) => {
-   db.execute('SELECT * FROM posts')
+   db.execute('SELECT * FROM users')
     .then(([rows,fieldData]) => {
-        res.json({ posts : rows})
+        res.json({ users: rows})
     }).catch(
         err => console.log(err)
     );
@@ -12,9 +12,9 @@ exports.getPosts = (req,res,next) => {
 
 exports.getPost = (req,res,next) => {
    const id = req.params.id;
-   db.execute(' SELECT * FROM posts WHERE posts.id = ?',[id])
+   db.execute(' SELECT * FROM users WHERE users.id = ?',[id])
    .then(([rows,fieldData]) => {
-        res.json({ posts : rows})
+        res.json({ USERS : rows})
    })
    .catch(
         err => console.log(err)
@@ -34,9 +34,11 @@ exports.createPost = (req,res,next) => {
 
     const title = req.body.title;
     const description = req.body.description;
+    const image = req.body.image;
+    const  nome = req.body.nome;
     //INSERT NEL DATABASE
-    var newPost = db.execute('INSERT INTO posts (title,description) VALUES (?,?)',
-    [title,description])
+    var newPost = db.execute('INSERT INTO users (title,description,image,nome) VALUES (?,?,?,?)',
+    [title,description,image,nome])
 
     //console.log(newPost);
     //SALVO NEL DATABASE e genera ID
@@ -47,7 +49,9 @@ exports.createPost = (req,res,next) => {
             post : { 
                 id : ID,
                 title : title,
-                description : description
+                description : description,
+                image : image,
+                nome : nome
             }
         });
     }).catch( err => {
